@@ -4,25 +4,6 @@ Processo para iniciar um projeto do zero usando este framework de documentacao. 
 
 ---
 
-## 0. Preparar o framework
-
-- [ ] Criar repositorio e diretorio do projeto
-- [ ] Copiar estrutura de docs:
-
-```bash
-mkdir -p docs/{architecture/adr,data,workflow}
-```
-
-- [ ] Copiar do projeto-referencia:
-  - `docs/workflow/conventions.md` — adaptar depois
-  - `docs/workflow/new-feature.md` — adaptar depois
-  - `docs/workflow/schema-change.md` — reutilizar se Prisma
-  - `docs/workflow/bootstrap.md` — este arquivo
-  - `docs/architecture/adr/000-template.md` — template de ADR
-  - `docs/README.md` — adaptar depois
-
----
-
 ## Fase 1: Definir o que
 
 Objetivo: ter clareza sobre escopo antes de abrir o editor. Esse e o momento mais barato para mudar de ideia.
@@ -47,7 +28,22 @@ Criar `docs/architecture/overview.md` com:
 
 **Dica:** non-goals sao mais importantes que features nesse momento. Features voce vai descobrir. Non-goals voce precisa decidir.
 
-### 1.2 Esbocar C4 (C1 e C2 apenas)
+### 1.2 Preencher project-context.md
+
+Preencher `docs/workflow/project-context.md` com o contexto do produto — o que o agente precisa saber para trabalhar bem:
+
+- [ ] **O que e o produto** — descricao em 3-5 frases (quem usa, qual problema resolve, como resolve)
+- [ ] **Personas** — quem vai usar, o que espera
+- [ ] **Fluxos principais** — sequencia de acoes do usuario
+- [ ] **Mapa de rotas / telas** — rotas do MVP com descricao e se precisa de auth
+- [ ] **Tom e personalidade** — como o produto se comunica (tom, mensagens de erro, empty states)
+- [ ] **Nivel de refino visual** — fidelidade esperada, responsividade, animacoes, dark mode
+- [ ] **Restricoes e premissas** — o que o agente precisa saber para nao errar
+- [ ] **Fora de escopo (MVP)** — o que pode vir depois
+
+Este documento complementa o overview.md: enquanto o overview define a arquitetura, o project-context define o produto.
+
+### 1.3 Esbocar C4 (C1 e C2 apenas)
 
 Criar `docs/architecture/c4.md` com:
 
@@ -70,6 +66,10 @@ Objetivo: tomar decisoes fundacionais e documenta-las ANTES de implementar. Deci
 ### 2.0 Consultar decisions/
 
 Antes de criar ADRs, consultar os guias de decisao para cada area tecnologica. Cada arquivo explica as opcoes, trade-offs e o que segue de cada escolha.
+
+Para cada decisao, voce tem duas saidas:
+- **Escolher uma das opcoes listadas no guia** — o guia explica trade-offs e o que segue de cada escolha
+- **"Ja sei o que quero"** — descrever livremente (lib, versao, motivo) e registrar como esta. Util para quem ja tem stack definida ou preferencias fortes
 
 **Decisoes core — todo projeto precisa responder:**
 
@@ -97,6 +97,8 @@ Antes de criar ADRs, consultar os guias de decisao para cada area tecnologica. C
 | Monorepo | `decisions/monorepo.md` |
 
 Registrar as decisoes tomadas em ADRs (proximo passo). Se a decisao foi direta (sem duvida entre alternativas), um comentario no `CLAUDE.md` do projeto e suficiente.
+
+**Nota sobre UI:** ao decidir UI e componentes, coletar tambem referencias visuais (Figma, imagens, URLs, descricao textual). Ver secao "Referencias visuais" em `decisions/ui.md`.
 
 ### 2.1 ADRs fundacionais
 
@@ -154,21 +156,29 @@ Perguntas para guiar a modelagem:
 
 Objetivo: scaffold tecnico funcional com as decisoes da fase 2 implementadas.
 
-### 3.1 Scaffold
+### 3.1 Buscar documentacao atualizada das libs
+
+Antes de gerar qualquer arquivo, buscar a documentacao atual de cada lib do stack escolhido. Isso garante que comandos de instalacao, estrutura de pastas e configuracoes iniciais estejam corretos — nao baseados em versoes antigas.
+
+- [ ] Para cada lib/framework relevante (framework, ORM, auth, UI): buscar docs via Context7 ou documentacao oficial
+- [ ] Usar os docs como fonte primaria para os passos seguintes
+- [ ] Se nao encontrar documentacao para alguma lib: usar conhecimento do agente e registrar nota no `CLAUDE.md` para revisar manualmente
+
+### 3.2 Scaffold
 
 - [ ] Inicializar projeto com framework escolhido (ex: `npx create-next-app@latest`)
 - [ ] Instalar dependencias core (ORM, auth, styling)
 - [ ] Configurar linter e formatter
 - [ ] Configurar git + `.gitignore`
 
-### 3.2 Schema inicial
+### 3.3 Schema inicial
 
 - [ ] Escrever schema inicial baseado no data dictionary
 - [ ] Seguir convencoes de `workflow/schema-drizzle.md` ou `workflow/schema-prisma.md` conforme ORM escolhido
 - [ ] Rodar primeira migracao
 - [ ] Se Prisma: rodar `prisma generate`
 
-### 3.3 Infraestrutura de codigo
+### 3.4 Infraestrutura de codigo
 
 Criar esqueleto dos patterns que vao se repetir:
 
@@ -179,7 +189,7 @@ Criar esqueleto dos patterns que vao se repetir:
 - [ ] **Validacao** — funcoes de validacao de input
 - [ ] **Rate limit** — se aplicavel
 
-### 3.4 Adaptar docs de workflow
+### 3.5 Adaptar docs de workflow
 
 - [ ] `conventions.md` — preencher secoes `_definir_` com as decisoes tomadas na fase 2:
   - Idioma da UI e da documentacao
@@ -191,7 +201,7 @@ Criar esqueleto dos patterns que vao se repetir:
 - [ ] `new-feature.md` — adaptar nomes de camadas ao stack escolhido
 - [ ] Escolher o workflow de schema: `schema-drizzle.md` (Drizzle) ou `schema-prisma.md` (Prisma)
 
-### 3.5 Criar CLAUDE.md
+### 3.6 Criar CLAUDE.md
 
 - [ ] Commands (dev, build, lint, migrate)
 - [ ] Stack (uma linha)
@@ -200,7 +210,7 @@ Criar esqueleto dos patterns que vao se repetir:
 
 **Dica:** o CLAUDE.md comeca pequeno e cresce organicamente conforme padroes emergem. Nao tente escrever tudo no dia 1.
 
-### 3.6 Primeiro commit
+### 3.7 Primeiro commit
 
 - [ ] Commit inicial com scaffold + docs + schema
 - [ ] Mensagem: `chore: initial project setup with docs framework`
@@ -272,14 +282,14 @@ Objetivo: a documentacao reflete o que foi realmente construido, nao o que foi p
 ```
 Fase 1: DEFINIR          Fase 2: DECIDIR                Fase 3: CONFIGURAR
 ─────────────────         ──────────────────────         ─────────────────
-overview.md               decisions/ (consultar)         Scaffold do projeto
-├─ O que faz              ├─ runtime, database, orm       ├─ Framework + deps
-├─ Casos de uso MVP       ├─ auth, api-style, ui          ├─ Schema inicial
-├─ Non-goals              ├─ testing                      ├─ Auth, logger, config
-└─ NFRs                   └─ email, jobs, storage...      ├─ Preencher conventions.md
-                                                          ├─ CLAUDE.md
-c4.md (C1 + C2)           ADRs fundacionais              └─ Primeiro commit
-                          data_dictionary.md
+overview.md               decisions/ (consultar)         Buscar docs via Context7
+├─ O que faz              ├─ runtime, database, orm       Scaffold do projeto
+├─ Casos de uso MVP       ├─ auth, api-style, ui          ├─ Framework + deps
+├─ Non-goals              │   └─ refs visuais aqui        ├─ Schema inicial
+└─ NFRs                   ├─ testing                      ├─ Auth, logger, config
+                          └─ email, jobs, storage...      ├─ Preencher conventions.md
+c4.md (C1 + C2)           ADRs fundacionais              ├─ CLAUDE.md
+                          data_dictionary.md             └─ Primeiro commit
 
          │                         │                         │
          ▼                         ▼                         ▼

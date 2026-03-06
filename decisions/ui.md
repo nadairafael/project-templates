@@ -87,3 +87,24 @@ Define como a interface é construída. Impacta velocidade de desenvolvimento e 
 | Diferenciação de marca | ⚠️ | ✅ | ✅ |
 
 **Regra rápida:** SaaS / dashboard / internal tool → Tailwind + shadcn. Brand forte com design system próprio → Tailwind + custom. Sem Tailwind por requisito → CSS Modules.
+
+---
+
+## Referências visuais
+
+Após definir a abordagem de componentes, coletar referências de design antes de começar o scaffold. Isso evita UI genérica e orienta decisões de tokens (cores, tipografia, espaçamento).
+
+**Pedir ao menos uma das opções abaixo:**
+
+- **Figma** — link para o arquivo ou frame específico
+- **Imagens / screenshots** — prints de telas, moodboards, ou exemplos de apps com visual parecido
+- **URLs de referência** — sites ou produtos cujo design se quer aproximar
+- **Descrição textual** — ex: "minimalista, fundo escuro, tipografia grande, sem bordas visíveis"
+
+**Se não houver referências:** registrar como "sem referência visual definida — usar defaults da lib escolhida" e seguir.
+
+**O que fazer com as referências:**
+- Extrair os tokens principais: paleta de cores, tipografia, raio de borda, espaçamento base
+- Registrar em `conventions.md` na seção de design tokens
+- Se usar shadcn: documentar as customizações das CSS variables (`--primary`, `--radius`, etc.)
+- Se usar custom: criar o arquivo de tokens antes de qualquer componente

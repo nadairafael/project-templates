@@ -65,6 +65,20 @@ _definir_
 
 > Decisão: ver `decisions/ui.md`
 
+### Design tokens
+
+_Preencher com tokens extraídos das referências visuais coletadas na Fase 2 (ver seção "Referências visuais" em `decisions/ui.md`)._
+
+| Token | Valor |
+|-------|-------|
+| Cor primária | _definir_ |
+| Cor de fundo | _definir_ |
+| Tipografia (font-family) | _definir_ |
+| Raio de borda base | _definir_ |
+| Espaçamento base | _definir_ |
+
+_Se não houve referências visuais: usar defaults da lib escolhida e remover esta tabela._
+
 ### Se Tailwind + shadcn/ui
 
 - Primitivos em `components/ui/` — não editar diretamente; reinstalar via `npx shadcn@latest add`

@@ -37,7 +37,7 @@ project-templates/
 │   ├── runtime.md          # Cloudflare vs Vercel vs Railway
 │   ├── database.md         # D1 vs Postgres vs Turso
 │   ├── auth.md             # better-auth vs Clerk vs Auth.js vs Supabase
-│   ├── ui.md               # Tailwind + shadcn vs custom vs CSS Modules
+│   ├── ui.md               # Tailwind + shadcn vs custom vs CSS Modules + referências visuais
 │   ├── testing.md          # Vitest vs Jest; Playwright vs Cypress
 │   ├── api-style.md        # REST vs tRPC vs GraphQL vs Server Actions
 │   ├── background-jobs.md  # Trigger.dev vs Inngest vs BullMQ vs CF Queues
@@ -51,6 +51,7 @@ project-templates/
 │
 ├── workflow/
 │   ├── bootstrap.md        # Entry point — 5 phases, do not skip
+│   ├── project-context.md  # Product context for the LLM — personas, routes, flows, visual level
 │   ├── conventions.md      # Code conventions skeleton (fill in after decisions)
 │   ├── new-feature.md      # Per-feature implementation checklist
 │   ├── schema-drizzle.md   # Schema change workflow for Drizzle projects
@@ -68,9 +69,11 @@ project-templates/
 
 ```
 bootstrap.md
-  ├── Phase 2 → decisions/         (pick ORM, runtime, DB, auth, UI)
+  ├── Phase 2 → decisions/         (pick ORM, runtime, DB, auth, UI + visual refs)
   ├── Phase 2 → adr/000-template   (document each choice as an ADR)
+  ├── Phase 3 → Context7           (fetch up-to-date docs for chosen libs)
   ├── Phase 3 → conventions.md     (fill in with chosen stack's conventions)
+  ├── Phase 3 → scaffold           (initialize project based on Context7 docs)
   ├── Phase 4 → new-feature.md     (one run per feature)
   │               └── schema changed? → schema-drizzle.md or schema-prisma.md
   └── Phase 5 → ARCHITECTURE.md   (document what was actually built)

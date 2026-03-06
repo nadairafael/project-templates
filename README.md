@@ -27,7 +27,7 @@ Depois seguir `workflow/bootstrap.md` fase por fase:
 ```
 Fase 1 → definir o que o sistema faz e seus non-goals
 Fase 2 → consultar decisions/ e criar ADRs para cada escolha fundacional
-Fase 3 → preencher conventions.md e fazer scaffold
+Fase 3 → buscar docs via Context7, preencher conventions.md e fazer scaffold
 Fase 4 → implementar o MVP com new-feature.md por feature
 Fase 5 → consolidar a documentacao com o que foi realmente construido
 ```
@@ -44,7 +44,7 @@ Consultar na Fase 2 do bootstrap. Cada arquivo descreve opcoes, trade-offs e o q
 | `decisions/runtime.md` | Cloudflare Workers vs Vercel vs Railway |
 | `decisions/database.md` | D1 vs PostgreSQL (Neon / Supabase / Railway) vs Turso |
 | `decisions/auth.md` | better-auth vs Clerk vs Auth.js vs Supabase Auth |
-| `decisions/ui.md` | Tailwind + shadcn vs Tailwind + custom vs CSS Modules |
+| `decisions/ui.md` | Tailwind + shadcn vs Tailwind + custom vs CSS Modules + referências visuais |
 | `decisions/testing.md` | Vitest vs Jest; Playwright vs Cypress |
 | `decisions/api-style.md` | REST vs tRPC vs GraphQL vs Server Actions |
 | `decisions/background-jobs.md` | Trigger.dev vs Inngest vs BullMQ vs CF Queues |
@@ -61,6 +61,7 @@ Consultar na Fase 2 do bootstrap. Cada arquivo descreve opcoes, trade-offs e o q
 | Arquivo | Descricao | Adaptar? |
 |---------|-----------|----------|
 | `bootstrap.md` | Checklist de 5 fases para iniciar um projeto do zero | Nao |
+| `project-context.md` | Contexto do produto para o agente — personas, rotas, fluxos, nivel visual | Sim |
 | `conventions.md` | Convencoes de codigo — esqueleto para preencher apos as decisoes | Sim |
 | `new-feature.md` | Checklist para implementar uma feature (scope → build → verify → doc) | Sim (camadas) |
 | `schema-drizzle.md` | Mudanca de schema com Drizzle + D1/Turso/Postgres | Sim (dependentes) |
